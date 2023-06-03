@@ -391,7 +391,7 @@ for epoch in tqdm(range(max_epochs)):
     epoch_array.append(epoch)
     #print(f"Epoch: {epoch}, Loss: {loss_value}")
 
-    if torch.remainder(epoch+1,5000)==0:
+    if np.mod(epoch+1,5000)==0:
         torch.save(reg.state_dict(), f'reg_model_P{epoch}.pt')
 
 
