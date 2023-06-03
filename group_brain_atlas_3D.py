@@ -51,7 +51,7 @@ for i, sub in enumerate(tqdm(sub_files)):
     v = resize(v.get_fdata(), (64, 64, 64), mode="constant")
     data[i] = v
 
-fixed = np.float32(data[:10, 0, :, :, :])
+fixed = np.float32(data)
 moving = np.float32(0 * data[1, 0, :, :, :])
 
 
@@ -308,10 +308,10 @@ show_image_list(
 
 
 sum = 0
-for i in range(10):
+for i in range(nofixed):
     sum += fixed[i]
 
-avg_fixed = sum / 100
+avg_fixed = sum / nofixed
 plt.imshow(avg_fixed[:, :, 32])
 plt.colorbar(fraction=0.046, pad=0.04)
 plt.title("Average Image")
