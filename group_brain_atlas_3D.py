@@ -401,11 +401,11 @@ grp_atlas = moving.detach()[0,0].to('cpu').numpy()
 # In[16]:
 
 
-output_images= [moving.detach()[0,0,32].to('cpu').numpy(),
-               fixed[0,0,32].to('cpu').numpy(),
-               moved[0,0,32].detach().to('cpu').numpy(),
-               ddf[0,0,32].detach().to('cpu').numpy(),
-               ddf[0,1,32].detach().to('cpu').numpy()]
+output_images= [moving.detach()[0,0,22].to('cpu').numpy(),
+               fixed[0,0,22].to('cpu').numpy(),
+               moved[0,0,22].detach().to('cpu').numpy(),
+               ddf[0,0,22].detach().to('cpu').numpy(),
+               ddf[0,1,22].detach().to('cpu').numpy()]
 show_image_list(list_images=output_images, 
                 list_titles=['Learnt Moving Image','Fixed Image','Moved Image','Deformation Field','Deformation Field'],
                 num_cols=3,
