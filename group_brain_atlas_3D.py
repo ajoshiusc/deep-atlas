@@ -29,7 +29,8 @@ import nilearn.image as ni
 
 # In[3]:
 
-nofixed = 10
+nofixed = 100
+max_epochs = 50000
 
 sub_files = glob("../../HCP_1200/*/T1w/T1w_acpc_dc_restore_brain.nii.gz")[:nofixed]
 
@@ -393,7 +394,6 @@ print(fixed.shape)
 fixed = fixedo[:, None, :, :]
 # moving = np.tile(movingo,(fixed.shape[0],1,1,1))
 
-max_epochs = 5000
 
 loss_array = []
 epoch_array = []
@@ -424,12 +424,12 @@ for epoch in tqdm(range(max_epochs)):
     epoch_array.append(epoch)
     # print(f"Epoch: {epoch}, Loss: {loss_value}")
 
-    if np.mod(epoch + 1, 5) == 0:
+    if np.mod(epoch + 1, 500) == 0:
         torch.save(
             {
                 "reg_dict": reg.state_dict(),
                 "moving_net_dict": moving_net.state_dict(),
-                "moving1": moving1,
+                "moving1": moving1,"loss_array":loss_array
             },
             f"group_reg_{epoch}.pt",
         )
