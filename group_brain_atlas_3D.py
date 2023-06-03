@@ -186,7 +186,7 @@ def img_is_color(img):
 
     return False
 
-def show_image_list(list_images, list_titles=None, list_cmaps=None, grid=True, num_cols=2, figsize=(20, 10), title_fontsize=30):
+def show_image_list(list_images, list_titles=None, list_cmaps=None, grid=True, num_cols=2, figsize=(20, 10), title_fontsize=30, out_filename='outpng.png'):
     '''
     Shows a grid of images, where each image is a Numpy array. The images can be either
     RGB or grayscale.
@@ -253,6 +253,8 @@ def show_image_list(list_images, list_titles=None, list_cmaps=None, grid=True, n
 
     fig.tight_layout()
     _ = plt.show()
+
+    plt.savefig(out_filename)
 
 
 # In[9]:
