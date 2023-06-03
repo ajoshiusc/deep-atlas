@@ -391,7 +391,7 @@ print(fixed.shape)
 fixed = fixedo[:, None, :, :]
 # moving = np.tile(movingo,(fixed.shape[0],1,1,1))
 
-max_epochs = 30000
+max_epochs = 3000
 
 loss_array = []
 epoch_array = []
