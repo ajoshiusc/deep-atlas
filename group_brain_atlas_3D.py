@@ -28,7 +28,7 @@ import nilearn.image as ni
 # In[3]:
 
 
-sub_files = glob('/project/ajoshi_27/HCP_1200/*/T1w/T1w_acpc_dc_restore.nii.gz')[:10]
+sub_files = glob('/project/ajoshi_27/HCP_1200/*/T1w/T1w_acpc_dc_restore_brain.nii.gz')[:10]
 
 
 # In[4]:
