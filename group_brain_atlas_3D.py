@@ -28,7 +28,7 @@ import nilearn.image as ni
 # In[3]:
 
 
-sub_files = glob('/project/ajoshi_27/HCP_All/*/T1w/T1w_acpc_dc_restore.nii.gz')[:10]
+sub_files = glob('/project/ajoshi_27/HCP_1200/*/T1w/T1w_acpc_dc_restore.nii.gz')[:10]
 
 
 # In[4]:
@@ -391,9 +391,12 @@ for epoch in tqdm(range(max_epochs)):
     epoch_array.append(epoch)
     #print(f"Epoch: {epoch}, Loss: {loss_value}")
 
+    if torch.mod(epoch,1000):
+        torch.save(reg.state_dict(), f'reg_model_P{epoch}.pt')
 
 
 
+grp_atlas = moving.detach()[0,0].to('cpu').numpy()
 
 # In[16]:
 
@@ -409,6 +412,8 @@ show_image_list(list_images=output_images,
                 figsize=(10, 10),
                 grid=False,
                 title_fontsize=15)
+
+
 
 
 # In[ ]:
