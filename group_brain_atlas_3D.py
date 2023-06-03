@@ -29,7 +29,7 @@ import nilearn.image as ni
 
 # In[3]:
 
-nofixed = 100
+nofixed = 50
 
 sub_files = glob("../../HCP_1200/*/T1w/T1w_acpc_dc_restore_brain.nii.gz")[:nofixed]
 
@@ -391,7 +391,7 @@ print(fixed.shape)
 fixed = fixedo[:, None, :, :]
 # moving = np.tile(movingo,(fixed.shape[0],1,1,1))
 
-max_epochs = 3000
+max_epochs = 5000
 
 loss_array = []
 epoch_array = []
