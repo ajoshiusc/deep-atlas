@@ -37,7 +37,7 @@ sub_files = glob("../../HCP_1200/*/T1w/T1w_acpc_dc_restore_brain.nii.gz")[:nofix
 
 
 num_sub = len(sub_files)
-data = np.zeros((num_sub, 1, 64, 64, 64))
+data = np.zeros((num_sub, 64, 64, 64))
 
 
 # In[5]:
@@ -52,13 +52,13 @@ for i, sub in enumerate(tqdm(sub_files)):
     data[i] = v
 
 fixed = np.float32(data)
-moving = np.float32(0 * data[1, 0, :, :, :])
+moving = np.float32(0 * data[1, :, :, :])
 
 
 # In[6]:
 
 
-plt.imshow(fixed[1, :, :, 40])
+#plt.imshow(fixed[1, :, :, 40])
 
 
 # In[7]:
