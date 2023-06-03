@@ -29,7 +29,7 @@ import nilearn.image as ni
 
 # In[3]:
 
-nofixed = 50
+nofixed = 10
 
 sub_files = glob("../../HCP_1200/*/T1w/T1w_acpc_dc_restore_brain.nii.gz")[:nofixed]
 
@@ -58,7 +58,7 @@ moving = np.float32(0 * data[1, :, :, :])
 # In[6]:
 
 
-#plt.imshow(fixed[1, :, :, 40])
+# plt.imshow(fixed[1, :, :, 40])
 
 
 # In[7]:
@@ -281,9 +281,8 @@ def show_image_list(
         list_axes[i].set_visible(False)
 
     fig.tight_layout()
-    _ = plt.show()
-
     plt.savefig(out_filename)
+    plt.close()
 
 
 # In[9]:
@@ -291,8 +290,8 @@ def show_image_list(
 
 list_images = [moving[:, :, 32]]
 name = ["Fixed Image"]
-list_titles = list(np.repeat(name, nofixed))
-for i in range(nofixed):
+list_titles = list(np.repeat(name, 5))
+for i in range(5):
     list_images.append(fixed[i, :, :, 32])
 show_image_list(
     list_images=list_images,
@@ -301,6 +300,7 @@ show_image_list(
     figsize=(10, 10),
     grid=False,
     title_fontsize=15,
+    out_filename="Sample_Images.png",
 )
 
 
@@ -315,6 +315,8 @@ avg_fixed = sum / nofixed
 plt.imshow(avg_fixed[:, :, 32])
 plt.colorbar(fraction=0.046, pad=0.04)
 plt.title("Average Image")
+plt.savefig("Average_image.png")
+plt.close()
 
 
 # In[11]:
@@ -422,10 +424,14 @@ for epoch in tqdm(range(max_epochs)):
     epoch_array.append(epoch)
     # print(f"Epoch: {epoch}, Loss: {loss_value}")
 
-    if np.mod(epoch + 1, 5000) == 0:
+    if np.mod(epoch + 1, 5) == 0:
         torch.save(
-            {"reg_dict": reg.state_dict(), "moving_net_dict": moving_net.state_dict()},
-            f"reg_model_P{epoch}.pt",
+            {
+                "reg_dict": reg.state_dict(),
+                "moving_net_dict": moving_net.state_dict(),
+                "moving1": moving1,
+            },
+            f"group_reg_{epoch}.pt",
         )
 
 
