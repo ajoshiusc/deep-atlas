@@ -34,8 +34,8 @@ max_epochs = 50000
 
 
 pretrained = True
-epoch_file = 'group_reg_30000.pt'
-start_epoch = 30000
+epoch_file = 'group_reg_29999.pt'
+start_epoch = 29999
 
 sub_files = glob("../../HCP_1200/*/T1w/T1w_acpc_dc_restore_brain.nii.gz")[:nofixed]
 
@@ -454,7 +454,7 @@ for epoch in range(start_epoch,max_epochs):
                 "moving1": moving1,
                 "loss_array": loss_array,
             },
-            f"group_reg_{epoch}.pt",
+            f"group_reg_{epoch+1}.pt",
         )
     print(f"Epoch [{epoch+1}/{max_epochs}], Loss: {loss_value}")
 
