@@ -34,7 +34,7 @@ max_epochs = 50000
 
 
 pretrained = True
-epoch_file = 'group_reg_29999.pt'
+epoch_file = "group_reg_29999.pt"
 start_epoch = 29999
 
 sub_files = glob("../../HCP_1200/*/T1w/T1w_acpc_dc_restore_brain.nii.gz")[:nofixed]
@@ -406,21 +406,16 @@ epoch_array = []
 fixed = torch.tensor(fixed).to("cuda")
 
 
-
 if pretrained:
     checkpoint = torch.load(epoch_file)
-    reg.load_state_dict(checkpoint['reg_dict'])
-    moving_net.load_state_dict(checkpoint['moving_net_dict'])
+    reg.load_state_dict(checkpoint["reg_dict"])
+    moving_net.load_state_dict(checkpoint["moving_net_dict"])
 
 else:
     start_epoch = 0
 
 
-
-
-
-
-for epoch in range(start_epoch,max_epochs):
+for epoch in range(start_epoch, max_epochs):
     optimizerM.zero_grad()
     optimizerR.zero_grad()
 
@@ -456,30 +451,30 @@ for epoch in range(start_epoch,max_epochs):
             },
             f"group_reg_{epoch+1}.pt",
         )
-    print(f"Epoch [{epoch+1}/{max_epochs}], Loss: {loss_value}")
+        print(f"Epoch [{epoch+1}/{max_epochs}], Loss: {loss_value}")
 
-
-    output_images = [
-        moving.detach()[0, 0, 22].to("cpu").numpy(),
-        fixed[0, 0, 22].to("cpu").numpy(),
-        moved[0, 0, 22].detach().to("cpu").numpy(),
-        ddf[0, 0, 22].detach().to("cpu").numpy(),
-        ddf[0, 1, 22].detach().to("cpu").numpy(),
-    ]
-    show_image_list(
-        list_images=output_images,
-        list_titles=[
-            "Learnt Moving Image",
-            "Fixed Image",
-            "Moved Image",
-            "Deformation Field",
-            "Deformation Field",
-        ],
-        num_cols=3,
-        figsize=(10, 10),
-        grid=False,
-        title_fontsize=15,
-    )
+        output_images = [
+            moving.detach()[0, 0, 22].to("cpu").numpy(),
+            fixed[0, 0, 22].to("cpu").numpy(),
+            moved[0, 0, 22].detach().to("cpu").numpy(),
+            ddf[0, 0, 22].detach().to("cpu").numpy(),
+            ddf[0, 1, 22].detach().to("cpu").numpy(),
+        ]
+        show_image_list(
+            list_images=output_images,
+            list_titles=[
+                "Learnt Moving Image",
+                "Fixed Image",
+                "Moved Image",
+                "Deformation Field",
+                "Deformation Field",
+            ],
+            num_cols=3,
+            figsize=(10, 10),
+            grid=False,
+            title_fontsize=15,
+            out_filename=f"output_{epoch}.png",
+        )
 
 grp_atlas = moving.detach()[0, 0].to("cpu").numpy()
 
