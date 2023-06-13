@@ -30,7 +30,7 @@ import nilearn.image as ni
 # In[3]:
 
 nofixed = 10
-max_epochs = 50000
+max_epochs = 500000
 
 
 pretrained = False
@@ -439,7 +439,7 @@ for epoch in range(start_epoch, max_epochs):
     epoch_array.append(epoch)
     # print(f"Epoch: {epoch}, Loss: {loss_value}")
 
-    if np.mod(epoch + 1, 1000) == 0:
+    if np.mod(epoch + 1, 10000) == 0:
         torch.save(
             {
                 "reg_dict": reg.state_dict(),
