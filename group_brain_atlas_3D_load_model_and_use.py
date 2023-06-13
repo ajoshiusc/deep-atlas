@@ -30,12 +30,12 @@ import nilearn.image as ni
 # In[3]:
 
 nofixed = 10
-max_epochs = 50000
+max_epochs = 1000
 
 
 pretrained = False
-epoch_file = '/home/ajoshi/group_reg_33000.pt'
-start_epoch = 33000
+epoch_file = '/home/ajoshi/group_reg_1000.pt'
+start_epoch = 1000
 
 
 
