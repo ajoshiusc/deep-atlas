@@ -428,7 +428,7 @@ for epoch in range(start_epoch, max_epochs):
     ddf = dvf_2_ddf(dvf)
     moved = warp_layer(moving, ddf)
 
-    imgloss = image_loss(moved, fixed) + 100000 * regularization_loss(ddf)
+    imgloss = image_loss(moved, fixed) + 10000 * regularization_loss(ddf)
 
     imgloss.backward()
     optimizerR.step()
