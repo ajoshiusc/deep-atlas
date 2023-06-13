@@ -15,7 +15,7 @@ from monai.config import USE_COMPILED
 from tqdm import tqdm
 from torch.nn import MSELoss
 import numpy as np
-
+import nibabel as nb
 # from skimage.io import imshow
 
 from glob import glob
@@ -34,8 +34,8 @@ max_epochs = 50000
 
 
 pretrained = False
-epoch_file = "~/group_reg_50000.pt"
-start_epoch = 50000
+epoch_file = '/home/ajoshi/group_reg_33000.pt'
+start_epoch = 33000
 
 
 
@@ -420,12 +420,12 @@ moving_net.load_state_dict(checkpoint["moving_net_dict"])
 
 
 moving1 = moving_net()
-moving = torch.tile(moving1[None, :, :, :], (fixed.shape[0], 1, 1, 1))
-moving = moving[:, None, :, :, :]
+#moving = torch.tile(moving1[None, :, :, :], (fixed.shape[0], 1, 1, 1))
+moving1 = moving1.to("cpu").detach().numpy()
 
 moving = resize(moving1,output_shape=(260,311,260))
 
 new_image = nb.Nifti1Image(moving, affine=0.7*np.eye(4))
 
-new_image.to_filename('grp_avg.nii.gz')
+new_image.to_filename('grp_avg2.nii.gz')
 
