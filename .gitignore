@@ -4,7 +4,11 @@ __pycache__/
 *$py.class
 *.pt
 *.png
-
+*.nii.*
+*.dfs
+*.pt*
+*.warp
+*.air
 
 # C extensions
 *.so
