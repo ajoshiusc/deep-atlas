@@ -30,12 +30,12 @@ import nilearn.image as ni
 # In[3]:
 
 nofixed = 10
-max_epochs = 1000
+max_epochs = 350000
 
 
 pretrained = False
-epoch_file = '/home/ajoshi/group_reg_1000.pt'
-start_epoch = 1000
+epoch_file = '/home/ajoshi/group_reg_350000.pt'
+start_epoch = 350000
 
 
 
@@ -427,5 +427,12 @@ moving = resize(moving1,output_shape=(260,311,260))
 
 new_image = nb.Nifti1Image(moving, affine=0.7*np.eye(4))
 
-new_image.to_filename('grp_avg2.nii.gz')
+new_image.to_filename('grp_avg350000.nii.gz')
 
+# moved = resize(moved,output_shape=(260,311,260))
+# new_image = nb.Nifti1Image(moved, affine=0.7*np.eye(4))
+# new_image.to_filename('moved350000.nii.gz')
+
+fixed = resize(fixed[0,0].to('cpu').numpy(),output_shape=(260,311,260))
+new_image = nb.Nifti1Image(fixed, affine=0.7*np.eye(4))
+new_image.to_filename('fixed350000.nii.gz')

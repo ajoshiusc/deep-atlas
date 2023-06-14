@@ -33,9 +33,9 @@ nofixed = 10
 max_epochs = 500000
 
 
-pretrained = False
-epoch_file = "group_reg_30000.pt"
-start_epoch = 30000
+pretrained = True
+epoch_file = "/home/ajoshi/group_reg_200000.pt"
+start_epoch = 200000
 
 sub_files = glob("../../HCP_1200/*/T1w/T1w_acpc_dc_restore_brain.nii.gz")[:nofixed]
 
@@ -428,7 +428,7 @@ for epoch in range(start_epoch, max_epochs):
     ddf = dvf_2_ddf(dvf)
     moved = warp_layer(moving, ddf)
 
-    imgloss = image_loss(moved, fixed) + 100000 * regularization_loss(ddf)
+    imgloss = image_loss(moved, fixed) + 30000 * regularization_loss(ddf)
 
     imgloss.backward()
     optimizerR.step()
