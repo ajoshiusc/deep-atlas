@@ -33,7 +33,7 @@ nofixed = 10
 max_epochs = 500000
 
 
-pretrained = True
+pretrained = False
 epoch_file = "/home/ajoshi/group_reg_200000.pt"
 start_epoch = 200000
 
